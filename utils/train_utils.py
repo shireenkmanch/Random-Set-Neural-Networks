@@ -1,5 +1,5 @@
 """
-Functions for training RS-CNN
+Functions for training RS-NN
 """
 
 import tensorflow as tf
@@ -112,13 +112,13 @@ def save_model_and_weights(model, selected_model, selected_dataset, model_type='
     Parameters:
     - model: A Keras model to save.
     - selected_dataset: A string specifying the selected dataset.
-    - model_type: A string specifying the model type ('CNN' or 'RSCNN').
+    - model_type: A string specifying the model type ('CNN' or 'RSNN').
 
     Returns:
     None
     """
-    if model_type not in ['CNN', 'RSCNN']:
-        raise ValueError("Invalid model type. Supported types are 'CNN' and 'RSCNN'.")
+    if model_type not in ['CNN', 'RSNN']:
+        raise ValueError("Invalid model type. Supported types are 'CNN' and 'RSNN'.")
 
     model_name = f'{model_type}_{selected_model}_{selected_dataset}'
     

@@ -1,7 +1,7 @@
 
 import tensorflow as tf
 import pickle
-from rscnn_functions.rscnn_loss import BinaryCrossEntropy
+from rsnn_functions.rsnn_loss import BinaryCrossEntropy
 import numpy as np
 
 
@@ -33,19 +33,19 @@ def load_model(selected_model, selected_dataset, model_type):
 
     Parameters:
     - model_name: A string specifying the model name.
-    - model_type: A string specifying the model type ('CNN' or 'RSCNN').
+    - model_type: A string specifying the model type ('CNN' or 'RSNN').
 
     Returns:
     A loaded Keras model.
     """
-    if model_type not in ['CNN', 'RSCNN']:
-        raise ValueError("Invalid model type. Supported types are 'CNN' and 'RSCNN'.")
+    if model_type not in ['CNN', 'RSNN']:
+        raise ValueError("Invalid model type. Supported types are 'CNN' and 'RSNN'.")
 
     model_name = f'{model_type}_{selected_model}_{selected_dataset}'
 
     custom_objects = {}
 
-    if model_type == 'RSCNN':
+    if model_type == 'RSNN':
         custom_objects = {'BinaryCrossEntropy': BinaryCrossEntropy}
         loaded_model = tf.keras.models.load_model(f'saved_models/{model_name}.keras', custom_objects=custom_objects)
     else:

@@ -1,5 +1,5 @@
 """
-    Model Architectures for RS-CNN: ResNet50, WideResNet-28-10, VGG16, Inception V3, EfficientNetB2
+    Model Architectures for RS-NN: ResNet50, WideResNet-28-10, VGG16, Inception V3, EfficientNetB2
 """
 
 import tensorflow as tf

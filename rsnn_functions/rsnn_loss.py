@@ -1,7 +1,7 @@
 import tensorflow as tf
 import keras
 import keras.backend as K
-from rscnn_functions.belief_mass_betp import mass_coeff
+from rsnn_functions.belief_mass_betp import mass_coeff
 import numpy as np
 
 new_classes = np.load('new_classes.npy', allow_pickle=True)

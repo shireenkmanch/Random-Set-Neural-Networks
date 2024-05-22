@@ -2,7 +2,7 @@
 Code for Budgeting: Selecting k number of focal sets from the random-set space
 
 Returns:
-    new_classes: Budgeted focal sets of classes for RS-CNN
+    new_classes: Budgeted focal sets of classes for RS-NN
 """
 
 from sklearn.manifold import TSNE

@@ -1,5 +1,5 @@
 """
-Uncertainty metrics for RS-CNN
+Uncertainty metrics for RS-NN
 
 Returns:
     entrop: Entropy of predictions
