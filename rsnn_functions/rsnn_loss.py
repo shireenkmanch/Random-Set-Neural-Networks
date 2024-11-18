@@ -5,8 +5,8 @@ from rsnn_functions.belief_mass_betp import mass_coeff
 import numpy as np
 
 new_classes = np.load('new_classes.npy', allow_pickle=True)
-# mass_coeff_matrix = mass_coeff(new_classes)
-# mass_coeff_matrix = tf.cast(mass_coeff_matrix, tf.float32)
+mass_coeff_matrix = mass_coeff(new_classes)
+mass_coeff_matrix = tf.cast(mass_coeff_matrix, tf.float32)
 
 ALPHA = 0.001
 BETA = 0.001

@@ -12,6 +12,7 @@ import numpy as np
 import logging
 import tensorflow as tf
 import warnings
+import zipfile
 
 def load_ood_data(selected_dataset, dataset_loader):
     x_test_ood_datasets = {}
@@ -59,8 +60,8 @@ def load_ood_svhn():
     return x_test_svhn, y_test_svhn
 
     
-def load_ood_intel_image(data_dir='data/datasets/Intel Image'):
-    seg_test = os.path.join(data_dir, './seg_test/seg_test')
+def load_ood_intel_image():
+    seg_test = 'data/datasets/Intel Image/seg_test'
 
     x_test_intel_image, y_test_intel_image = load_images_from_directory(seg_test)
     x_test_intel_image, y_test_intel_image = load_images_from_directory(seg_test)

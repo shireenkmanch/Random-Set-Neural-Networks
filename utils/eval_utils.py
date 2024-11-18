@@ -2,8 +2,11 @@
 import tensorflow as tf
 import pickle
 from rsnn_functions.rsnn_loss import BinaryCrossEntropy
+from rsnn_functions.belief_mass_betp import mass_coeff
 import numpy as np
+import keras
 
+@keras.saving.register_keras_serializable(package="my_package", name="BinaryCrossEntropy")
 
 def get_ood_datasets(selected_dataset):
     """
@@ -46,16 +49,32 @@ def load_model(selected_model, selected_dataset, model_type):
     custom_objects = {}
 
     if model_type == 'RSNN':
-        custom_objects = {'BinaryCrossEntropy': BinaryCrossEntropy}
-        loaded_model = tf.keras.models.load_model(f'saved_models/{model_name}.keras', custom_objects=custom_objects)
-    else:
-        loaded_model = tf.keras.models.load_model(f'saved_models/{model_name}.keras')
+        new_classes = np.load('new_classes.npy', allow_pickle=True)
+        mass_coeff_matrix = mass_coeff(new_classes)
+        mass_coeff_matrix = tf.cast(mass_coeff_matrix, tf.float32)
+        with open(f'saved_models/{model_name}_weights.pkl', 'rb') as weights_file:
+            saved_weights = pickle.load(weights_file)
+        # loaded_model = tf.keras.models.load_model(f'saved_models/{model_name}.keras', custom_objects={'BinaryCrossEntropy': BinaryCrossEntropy})
 
-    with open(f'saved_models/{model_name}_weights.pkl', 'rb') as weights_file:
-        saved_weights = pickle.load(weights_file)
+        # Set weights
+        inputs = tf.keras.layers.Input(shape=(32, 32, 3))
+        resize = tf.keras.layers.UpSampling2D(size=(7, 7))(inputs)
+        new_base_model = tf.keras.applications.ResNet50(input_shape=(224, 224, 3), include_top=False, weights=None)(resize)
+        x = tf.keras.layers.GlobalAveragePooling2D()(new_base_model)
+        x = tf.keras.layers.Flatten()(x)
+        x = tf.keras.layers.Dense(1024, activation="relu")(x)
+        x = tf.keras.layers.Dense(512, activation="relu")(x)
+        outputs = tf.keras.layers.Dense(len(new_classes), activation="sigmoid", name="classification")(x)
 
-    # Set weights
-    loaded_model.set_weights(saved_weights)
+        loaded_model = tf.keras.Model(inputs=inputs, outputs=outputs)
+        loaded_model.compile(loss=BinaryCrossEntropy,
+                    optimizer="adam",
+                    metrics=['binary_accuracy'])
+        loaded_model.summary()
+        loaded_model.set_weights(saved_weights)
+
+    elif model_type == 'CNN':
+        loaded_model = tf.keras.models.load_model(f'saved_models/{model_name}.h5')
 
     return loaded_model
 

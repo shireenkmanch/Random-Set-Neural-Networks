@@ -7,7 +7,7 @@ This repository contains code for Random-Set Neural Networks (RS-NN).
 Set up the environment using `environment.yml`:
 ```
 conda env create -f environment.yml
-   conda activate myenv
+conda activate rsnn
 ```
 
 For GPU support, ensure TensorFlow GPU version is installed:
