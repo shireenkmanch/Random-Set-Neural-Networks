@@ -79,7 +79,7 @@ Use the **eval.ipynb** notebook to
 │   ├── eval_utils.py                         # Evaluation utility functions
 ├── 📄 .gitattributes                         # Git attributes configuration
 ├── 📄 README.md                              # This README file
-├── 📄 environment.yml                        # Conda environment setup
+├── 📜 environment.yml                        # Conda environment setup
 ├── 📄 eval.ipynb                             # Evaluation notebook
 ├── 📄 train.ipynb                            # Training notebook
 ├── 📄 new_classes.npy                        # Saved random set of classes
