@@ -1,4 +1,5 @@
 # Random-Set Neural Networks (RS-NN)
+[![arXiv](https://img.shields.io/badge/arXiv-2307.05772-b31b1b.svg)](https://arxiv.org/abs/2307.05772)
 
 This repository contains code for the **ICLR 2025** paper: [Random-Set Neural Networks (RS-NN)](https://arxiv.org/abs/2307.05772).
 
