@@ -38,7 +38,7 @@ selected_model = "resnet50"   # Choose the model
 my_path = '/add/your/path/here'
 ```
 
-For large-scale models, check the 📂*models* directory. For pre-trained models, check the 📂*pretrained_models* directory.
+For large-scale models, check the 📂*models* directory. For pre-trained models, run the *pretrained_models.py* file.
 
 ### **4️⃣ Evaluation**
 Use the **eval.ipynb** notebook to 
